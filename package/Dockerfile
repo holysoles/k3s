@@ -1,4 +1,4 @@
-FROM alpine:3.21 as base
+FROM --platform=linux/386 alpine:3.21 as base
 RUN apk add -U ca-certificates zstd tzdata
 COPY build/out/data-linux.tar.zst /
 RUN mkdir -p /image/etc/ssl/certs /image/run /image/var/run /image/tmp /image/lib/modules /image/lib/firmware /image/var/lib/rancher/k3s/data/cni && \
@@ -8,7 +8,7 @@ RUN mkdir -p /image/etc/ssl/certs /image/run /image/var/run /image/tmp /image/li
     echo "root:x:0:" > /image/etc/group && \
     cp /etc/ssl/certs/ca-certificates.crt /image/etc/ssl/certs/ca-certificates.crt
 
-FROM scratch as collect
+FROM --platform=linux/386 scratch as collect
 ARG DRONE_TAG="dev"
 COPY --from=base /image /
 COPY --from=base /usr/share/zoneinfo /usr/share/zoneinfo
@@ -17,7 +17,7 @@ RUN mkdir -p /etc && \
     echo "PRETTY_NAME=\"K3s ${DRONE_TAG}\"" > /etc/os-release && \
     chmod 1777 /tmp
 
-FROM scratch
+FROM --platform=linux/386 scratch
 VOLUME /var/lib/kubelet
 VOLUME /var/lib/rancher/k3s
 VOLUME /var/lib/cni

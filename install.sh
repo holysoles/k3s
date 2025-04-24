@@ -323,6 +323,10 @@ setup_verify_arch() {
             ARCH=arm
             SUFFIX=-${ARCH}hf
             ;;
+        i686*)
+            ARCH=i368
+            SUFFIX=-${ARCH}
+            ;;
         *)
             fatal "Unsupported architecture $ARCH"
     esac

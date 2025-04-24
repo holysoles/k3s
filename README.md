@@ -1,3 +1,11 @@
+# Fork Notes
+
+This is a fork of k3s that aims to target a x86 (i386) architecture, with no plans to upstream the architecture support, only any found fixes. There is a dependency on [a forked version of k3s-root](https://github.com/holysoles/k3s-root/) to provide x86 userspace binaries.
+
+Compile with `GOARCH=386 make`
+
+# Original README
+
 K3s - Lightweight Kubernetes
 ===============================================
 [![FOSSA Status](https://app.fossa.com/api/projects/custom%2B25850%2Fgithub.com%2Fk3s-io%2Fk3s.svg?type=shield)](https://app.fossa.com/projects/custom%2B25850%2Fgithub.com%2Fk3s-io%2Fk3s?ref=badge_shield)
